@@ -21,11 +21,17 @@ class Profile(models.Model):
         blank=True
     )
     state = models.CharField(
-        _('state'), max_length=CHAR_MAX_LENGTH, null=True,
-        blank=True)
+        _('state'),
+        max_length=CHAR_MAX_LENGTH,
+        null=True,
+        blank=True
+    )
     city = models.CharField(
-        _('city'), max_length=CHAR_MAX_LENGTH, null=True,
-        blank=True)
+        _('city'),
+        max_length=CHAR_MAX_LENGTH,
+        null=True,
+        blank=True
+    )
     cep = models.IntegerField(_('cep'), null=True, blank=True)
     street = models.CharField(
         _('street'),
@@ -33,7 +39,11 @@ class Profile(models.Model):
         null=True,
         blank=True
     )
-    houseNumber = models.PositiveIntegerField(_('houseNumber'), null=True)
+    houseNumber = models.PositiveIntegerField(
+        _('houseNumber'),
+        null=True,
+        blank=True
+    )
     complement = models.CharField(
         _('complement'),
         max_length=CHAR_MAX_LENGTH,
@@ -41,8 +51,8 @@ class Profile(models.Model):
         blank=True
     )
 
-    cpf = models.IntegerField(_('cpf'), null=True)
-    pis = models.IntegerField(_('pis'), null=True)
+    cpf = models.IntegerField(_('cpf'), null=True, blank=True)
+    pis = models.IntegerField(_('pis'), null=True, blank=True)
 
     def __str__(self):
         return self.user.username
