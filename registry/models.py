@@ -17,25 +17,35 @@ class Profile(models.Model):
     country = models.CharField(
         _('country'),
         max_length=CHAR_MAX_LENGTH,
-        null=True
+        null=True,
+        blank=True
     )
-    state = models.CharField(_('state'), max_length=CHAR_MAX_LENGTH, null=True)
-    city = models.CharField(_('city'), max_length=CHAR_MAX_LENGTH, null=True)
-    cep = models.IntegerField(_('cep'), null=True)
+    state = models.CharField(
+        _('state'), max_length=CHAR_MAX_LENGTH, null=True,
+        blank=True)
+    city = models.CharField(
+        _('city'), max_length=CHAR_MAX_LENGTH, null=True,
+        blank=True)
+    cep = models.IntegerField(_('cep'), null=True, blank=True)
     street = models.CharField(
         _('street'),
         max_length=CHAR_MAX_LENGTH,
-        null=True
+        null=True,
+        blank=True
     )
     houseNumber = models.PositiveIntegerField(_('houseNumber'), null=True)
     complement = models.CharField(
         _('complement'),
         max_length=CHAR_MAX_LENGTH,
-        null=True
+        null=True,
+        blank=True
     )
 
     cpf = models.IntegerField(_('cpf'), null=True)
     pis = models.IntegerField(_('pis'), null=True)
+
+    def __str__(self):
+        return self.user.username
 
 
 @receiver(post_save, sender=User)
