@@ -24,6 +24,6 @@ def moveToMain(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/users/', include('registry.urls')),
+    path('api/v1/', include('registry.urls')),
     path('', moveToMain)
 ]
