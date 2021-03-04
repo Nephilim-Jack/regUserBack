@@ -15,8 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import redirect
+
+
+def moveToMain(request):
+    return redirect('api/v1/users/')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/users/', include('registry.urls'))
+    path('api/v1/users/', include('registry.urls')),
+    path('', moveToMain)
 ]
