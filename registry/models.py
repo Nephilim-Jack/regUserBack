@@ -51,8 +51,8 @@ class Profile(models.Model):
         blank=True
     )
 
-    cpf = models.IntegerField(_('cpf'), null=True, blank=True)
-    pis = models.IntegerField(_('pis'), null=True, blank=True)
+    cpf = models.IntegerField(_('cpf'), null=True, blank=True, unique=True)
+    pis = models.IntegerField(_('pis'), null=True, blank=True, unique=True)
 
     def __str__(self):
         return self.user.username
