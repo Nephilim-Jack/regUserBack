@@ -33,7 +33,7 @@ class UserViewSet(ModelViewSet):
         usingValue = loginsData.get(using, '')
         userLoginDict = dict()
         if using != 'email':
-            userLoginDict[f'profile__{using}'] = usingValue,
+            userLoginDict[f'profile__{using}'] = usingValue
         else:
             userLoginDict['email'] = usingValue
 
