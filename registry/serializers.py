@@ -20,6 +20,9 @@ class UserSerializer(ModelSerializer):
             'last_name', 'username', 'email',
             'profile', 'password'
         ]
+        extra_kwargs = {
+            'password': {'write_only': True}
+        }
 
     def create(self, validatedData):
         username = validatedData.get('first_name').lower()
