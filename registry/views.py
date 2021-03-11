@@ -38,7 +38,7 @@ class UserViewSet(ModelViewSet):
         return Response(returnData, returnStatus)
 
     @action(detail=False, methods=['post', ])
-    def getUserLogin(self, request, username, *args, **kwargs):
+    def getUserLogin(self, request, *args, **kwargs):
         using = request.data.get('using', '')
         loginsData = getUserLoginData(request)
 

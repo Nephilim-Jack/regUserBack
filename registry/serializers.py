@@ -25,9 +25,7 @@ class UserSerializer(ModelSerializer):
         }
 
     def create(self, validatedData):
-        username = validatedData.get('first_name').lower()
-        if validatedData.get('last_name', None) is not None:
-            username += validatedData.get('last_name')
+        username = validatedData.get('username')
         user = User.objects.create(
             username=username,
             first_name=validatedData.get('first_name'),
@@ -38,6 +36,8 @@ class UserSerializer(ModelSerializer):
 
         defaults = validatedData['profile']
         defaults['user'] = user
+        if defaults['pis'] == 0:
+            defaults['pis'] = None
         profile = Profile.objects.update_or_create(
             user=user,
             defaults=defaults
