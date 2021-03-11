@@ -25,8 +25,20 @@ class UserViewSet(ModelViewSet):
     serializer_class = UserSerializer
     permission_classes = [BaseUserPermission, ]
 
+    @action(detail=False, methods=['GET'], url_path='byUsername/(?P<username>\w+)')
+    def getUserByUsername(self, request, username, *args, **kwargs):
+        try:
+            user = User.objects.get(username=username)
+            serialized = UserSerializer(user)
+            returnData = serialized.data
+            returnStatus = status.HTTP_200_OK
+        except:
+            returnData = {'error': 'User not found'}
+            returnStatus = status.HTTP_404_NOT_FOUND
+        return Response(returnData, returnStatus)
+
     @action(detail=False, methods=['post', ])
-    def getUserLogin(self, request, *args, **kwargs):
+    def getUserLogin(self, request, username, *args, **kwargs):
         using = request.data.get('using', '')
         loginsData = getUserLoginData(request)
 
